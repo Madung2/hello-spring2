@@ -2,13 +2,17 @@ package hellospring2.hellospring2.service;
 
 import hellospring2.hellospring2.domain.Member;
 import hellospring2.hellospring2.repository.MemberRepository;
-import hellospring2.hellospring2.repository.MemoryMemberRepository;
 
 import java.util.List;
 import java.util.Optional;
 
 public class MemberService {
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
+
+    public MemberService(MemberRepository memberRepository) {//dependency injection
+        this.memberRepository = memberRepository;
+    }
+
 
     public Long join(Member member) {
         //회원가입: 같은 이름 있는 중복 회원 X
